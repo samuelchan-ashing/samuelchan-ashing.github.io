@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+  <script>try{var d=document.documentElement;if(localStorage.getItem("theme")==="dark")d.setAttribute("data-theme","dark");if(/^(fr|rcf)$/.test(localStorage.getItem("lang"))){d.classList.add("i18n-pending");setTimeout(function(){d.classList.remove("i18n-pending")},2500)}}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Uncertainty principles and the Logvinenko–Sereda theorem — Samuel Chan-ashing</title>
   <meta name="description" content="Directed research seminar report (2021, in French, with Bastien Lecluse) on uncertainty principles and the Logvinenko–Sereda theorem.">
@@ -15,6 +15,7 @@
 </head>
 <body data-page="stay" class="reader">
 <script src="../assets/js/icons.js"></script>
+<script src="../assets/js/i18n.js"></script>
 <div class="page-tint"></div>
 
 <div class="topfade"></div>
@@ -22,6 +23,7 @@
   <a class="circle-btn glass" href="../index.html#research" aria-label="Back"><svg class="icon"><use href="#i-chev-l"/></svg></a>
   <span class="topbar-title">Uncertainty principles and the Logvinenko–Sereda theorem</span>
   <div class="pill-btns glass">
+    <button type="button" data-action="lang" aria-label="Français"><span class="lang-label">FR</span></button>
     <button type="button" data-action="theme" aria-label="Dark mode"><svg class="icon"><use href="#i-moon"/></svg></button>
     <button type="button" data-action="share" aria-label="Share"><svg class="icon"><use href="#i-share"/></svg></button>
     <button type="button" data-action="menu" aria-label="More" aria-haspopup="menu" aria-expanded="false"><svg class="icon"><use href="#i-dots"/></svg></button>
@@ -41,7 +43,7 @@
       <div class="album-info">
         <h1 class="album-title">Uncertainty principles and the Logvinenko–Sereda theorem</h1>
         <div class="album-artist">Samuel Chan-ashing, Bastien Lecluse</div>
-        <div class="album-journal" lang="fr">Original title: <em>Principe d’incertitude et théorème de Logvinenko-Sereda</em></div>
+        <div class="album-journal only-en" lang="fr">Original title: <em>Principe d’incertitude et théorème de Logvinenko-Sereda</em></div>
         <div class="album-meta">Research seminar · 2021 · ENS Rennes</div>
         <div class="album-actions">
           <a class="cta" href="../pdf/logvinenko-sereda-2021.pdf" target="_blank" rel="noopener"><svg class="icon"><use href="#i-doc"/></svg> PDF</a>
@@ -79,7 +81,7 @@
       <ul class="chips"><li class="chip">Fourier transform</li><li class="chip">Heisenberg uncertainty principle</li><li class="chip">Annihilating pairs</li><li class="chip">Thick sets</li></ul>
     </section>
 
-    <p class="lang-note">This report is written in French.</p>
+    <p class="lang-note only-en">This report is written in French.</p>
     <article class="paper" id="paper-body" lang="fr" data-static>
 <section class="ltx_section" id="introduction">
 <h2 class="ltx_title ltx_title_section"><span class="ltx_tag ltx_tag_section">1</span>Introduction</h2>

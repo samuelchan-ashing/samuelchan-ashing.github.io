@@ -28,6 +28,9 @@
     copy: '<rect x="8" y="8" width="12.5" height="12.5" rx="2.4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.8 5.2A2.4 2.4 0 0 0 13.6 3.5H6A2.5 2.5 0 0 0 3.5 6v7.6c0 1 .7 1.9 1.7 2.2" fill="none" stroke="currentColor" stroke-width="2"/>',
     chi: '<path d="M4.6 6.4c2.6-.9 4.4.4 6.3 4.1l2.2 4.3c1.6 3.1 3 4 5.9 3.1" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M17.6 5.8 6.4 18.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>',
     papers: '<path d="M8.5 2.5h7l4 4v11a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M4.5 7v12.5a2 2 0 0 0 2 2H15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 10.5h6M10 14h4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+    code: '<path d="M8.6 6.5 3.4 12l5.2 5.5M15.4 6.5l5.2 5.5-5.2 5.5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>',
+    download: '<path d="M12 3.6v11.2M7.4 10.6 12 15.2l4.6-4.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.5 15.5v2.3a2.2 2.2 0 0 0 2.2 2.2h10.6a2.2 2.2 0 0 0 2.2-2.2v-2.3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+    close: '<path d="M6.5 6.5l11 11M17.5 6.5l-11 11" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
     list: '<circle cx="4.5" cy="6" r="1.7"/><circle cx="4.5" cy="12" r="1.7"/><circle cx="4.5" cy="18" r="1.7"/><rect x="8.5" y="5" width="13" height="2" rx="1"/><rect x="8.5" y="11" width="13" height="2" rx="1"/><rect x="8.5" y="17" width="13" height="2" rx="1"/>'
   };
   const sprite = '<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">' +

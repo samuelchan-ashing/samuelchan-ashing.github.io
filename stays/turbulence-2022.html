@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+  <script>try{var d=document.documentElement;if(localStorage.getItem("theme")==="dark")d.setAttribute("data-theme","dark");if(/^(fr|rcf)$/.test(localStorage.getItem("lang"))){d.classList.add("i18n-pending");setTimeout(function(){d.classList.remove("i18n-pending")},2500)}}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Random dynamical systems theory and application to turbulence — Samuel Chan-ashing</title>
   <meta name="description" content="Research stay memoir (2022, University of Cambridge) on random dynamical systems and Lagrangian chaos, supervised by Clément Mouhot.">
@@ -15,6 +15,7 @@
 </head>
 <body data-page="stay" class="reader">
 <script src="../assets/js/icons.js"></script>
+<script src="../assets/js/i18n.js"></script>
 <div class="page-tint"></div>
 
 <div class="topfade"></div>
@@ -22,6 +23,7 @@
   <a class="circle-btn glass" href="../index.html#research" aria-label="Back"><svg class="icon"><use href="#i-chev-l"/></svg></a>
   <span class="topbar-title">Random dynamical systems theory and application to turbulence</span>
   <div class="pill-btns glass">
+    <button type="button" data-action="lang" aria-label="Français"><span class="lang-label">FR</span></button>
     <button type="button" data-action="theme" aria-label="Dark mode"><svg class="icon"><use href="#i-moon"/></svg></button>
     <button type="button" data-action="share" aria-label="Share"><svg class="icon"><use href="#i-share"/></svg></button>
     <button type="button" data-action="menu" aria-label="More" aria-haspopup="menu" aria-expanded="false"><svg class="icon"><use href="#i-dots"/></svg></button>

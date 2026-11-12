@@ -584,7 +584,7 @@ def render_page(cfg, soup, abstract_html, info, tracks_html=None):
         "{{TINT}}": esc(cfg["tint"]),
         "{{COVER}}": esc(cfg["cover"]),
         "{{AUTHORS}}": esc(cfg["authors"]),
-        "{{ORIGINAL}}": (f'<div class="album-journal" lang="{cfg["lang"]}">Original title: <em>{esc(cfg["original_title"])}</em></div>' if cfg.get("original_title") else ""),
+        "{{ORIGINAL}}": (f'<div class="album-journal only-en" lang="{cfg["lang"]}">Original title: <em>{esc(cfg["original_title"])}</em></div>' if cfg.get("original_title") else ""),
         "{{META}}": esc(" · ".join([cfg["kind_short"], cfg["year"], cfg["place"]])),
         "{{PDF}}": esc(pdf_href(cfg["pdf"])),
         "{{LANG}}": cfg["lang"],
@@ -592,7 +592,7 @@ def render_page(cfg, soup, abstract_html, info, tracks_html=None):
         "{{TRACKS}}": track_html,
         "{{FOOT}}": "".join(f"<span>{f}</span>" for f in foot),
         "{{KEYWORDS}}": "".join(f'<li class="chip">{esc(k)}</li>' for k in kws),
-        "{{LANGNOTE}}": ('<p class="lang-note">This report is written in French.</p>' if cfg["lang"] == "fr" else ""),
+        "{{LANGNOTE}}": ('<p class="lang-note only-en">This report is written in French.</p>' if cfg["lang"] == "fr" else ""),
         "{{BODY}}": str(soup) if soup is not None else "",
         "{{MORE}}": more,
     }

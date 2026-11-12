@@ -9,6 +9,8 @@
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const icon = window.SiteIcon;
   const SITE = window.SITE || { papers: [] };
+  const T = (s, v) => (window.I18N ? I18N.t(s, v) : (v ? s.replace(/\{(\w+)\}/g, (m, k) => v[k]) : s));
+  const onLang = (f) => document.addEventListener("langchange", f);
 
   const params = new URLSearchParams(location.search);
   const id = (params.get("id") || "").trim();
@@ -28,14 +30,18 @@
   ];
 
   /* ---------- Immediate header from local data */
-  const fmtDate = (d) => new Date(d + "T12:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  const fmtDate = (d) => (window.I18N ? I18N.date(d) : new Date(d + "T12:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }));
   if (meta.tint) document.documentElement.style.setProperty("--tint", meta.tint);
   $("#cover").src = meta.cover;
-  $("#cover").alt = "Artwork: simulation for " + (meta.title || id);
+  const coverAlt = () => { $("#cover").alt = T("Artwork: simulation for {t}", { t: meta.title || id }); };
+  coverAlt(); onLang(coverAlt);
+  if (meta.code && window.CodeViewer) CodeViewer.attach($(".album-cover"), meta.code);   // hover: "View the simulation code"
   setTitle(meta.title || `arXiv:${id}`);
   const status = meta.status || "Preprint";
   const pubYear = meta.year ? String(meta.year) : (meta.date ? meta.date.slice(0, 4) : "");
-  $("#meta").textContent = [status, pubYear, "arXiv"].filter(Boolean).join(" · ");
+  let metaYear = pubYear, metaCat = "arXiv";
+  const metaLine = () => { $("#meta").textContent = [T(status), metaYear, metaCat].filter(Boolean).join(" · "); };
+  metaLine(); onLang(metaLine);
   if (meta.journal) {
     const doiUrl = meta.doi ? `https://doi.org/${meta.doi}` : "";
     const jtxt = `<em>${esc(meta.journal)}</em>${meta.ref ? ", " + esc(meta.ref) : ""}`;
@@ -55,14 +61,14 @@
 
   /* ---------- More by (other papers) */
   const others = SITE.papers.filter((p) => p.id !== baseId);
-  if (others.length) {
+  const moreBy = () => {
     $("#more-list").innerHTML = others.map((p) => `
       <li class="card"><a href="paper.html?id=${p.id}" title="${esc(p.title)}">
         <div class="art"><img src="${p.cover}" alt="" width="800" height="800" loading="lazy"><span class="badge">arXiv</span></div>
         <div class="card-title">${esc(p.short || p.title)}</div>
-        <div class="card-sub">${p.year || (p.date ? p.date.slice(0, 4) : "")} · ${esc(p.journalShort || p.status || "Preprint")}</div></a></li>`).join("");
-    $("#more-by").hidden = false;
-  }
+        <div class="card-sub">${p.year || (p.date ? p.date.slice(0, 4) : "")} · ${esc(p.journalShort || T(p.status || "Preprint"))}</div></a></li>`).join("");
+  };
+  if (others.length) { moreBy(); onLang(moreBy); $("#more-by").hidden = false; }
 
   function esc(s) { return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
 
@@ -170,7 +176,7 @@
     const authors = $$(".ltx_personname", art).map((p) => textOf(p)).filter(Boolean);
     if (authors.length) $("#authors").textContent = authors.join(", ");
     const year = pubYear || (vdate.match(/\d{4}/) || [""])[0];
-    $("#meta").textContent = [status, year, category].filter(Boolean).join(" · ");
+    metaYear = year; metaCat = category; metaLine();
 
     const abs = art.querySelector(".ltx_abstract");
     if (abs) {
@@ -214,7 +220,8 @@
     }
     if (mscText) {
       const m = $("#msc");
-      m.innerHTML = `<span class="msc-label">Mathematics Subject Classification</span> ${esc(mscText.replace(/[.\s]+$/, ""))}`;
+      const mscLine = () => { m.innerHTML = `<span class="msc-label">${esc(T("Mathematics Subject Classification"))}</span> ${esc(mscText.replace(/[.\s]+$/, ""))}`; };
+      mscLine(); onLang(mscLine);
       m.hidden = false;
     }
 
@@ -237,7 +244,7 @@
       const tag = h && h.querySelector(".ltx_tag");
       let num = tag ? tag.textContent.replace(/^(Appendix|Annexe)\s*/i, "").replace(/[.\s]+$/, "").trim() : "";
       const isBib = s.classList.contains("ltx_bibliography");
-      const title = isBib ? (textOf(h) || "References") : (textOf(h) || "Untitled");
+      const title = isBib ? (textOf(h) || T("References")) : (textOf(h) || T("Untitled"));
       const titleHTML = h ? htmlOf(h) : esc(title);
       const subs = $$(":scope > section > .ltx_title", s).map((x) => textOf(x)).filter(Boolean);
       return { id: s.id, num, title, titleHTML, subs, isBib, el: s };
@@ -251,11 +258,14 @@
         <span class="row-trail dots">${icon("dots")}</span></a></li>`).join("");
 
     const nSec = tracks.filter((x) => !x.isBib).length;
-    $("#foot").innerHTML = [
-      meta.journal ? `Published in ${esc(meta.journal)}${meta.ref ? " " + esc(meta.ref) : ""} (${esc(year)})` : "",
-      `${nSec} section${nSec > 1 ? "s" : ""}, about ${mins} min of reading`,
-      `Text: arXiv:${esc(baseId)}${esc(version)}${vdate ? " · " + esc(vdate) : (meta.date ? " · " + esc(fmtDate(meta.date)) : "")} · <span class="src">${esc(src.label)}</span>`
-    ].filter(Boolean).map((l) => `<span>${l}</span>`).join("");
+    const foot = () => {
+      $("#foot").innerHTML = [
+        meta.journal ? esc(T("Published in {j} ({y})", { j: meta.journal + (meta.ref ? " " + meta.ref : ""), y: year })) : "",
+        esc(T(nSec > 1 ? "{n} sections, about {m} min of reading" : "{n} section, about {m} min of reading", { n: nSec, m: mins })),
+        `${esc(T("Text:"))} arXiv:${esc(baseId)}${esc(version)}${vdate ? " · " + esc(vdate) : (meta.date ? " · " + esc(fmtDate(meta.date)) : "")} · <span class="src">${esc(T(src.label))}</span>`
+      ].filter(Boolean).map((l) => `<span>${l}</span>`).join("");
+    };
+    foot(); onLang(foot);
 
     // citation to copy
     $("#m-cite").dataset.copy = meta.journal
@@ -276,12 +286,15 @@
     $("#abstract").remove();
     const box = $("#error");
     box.hidden = false;
-    box.innerHTML = `
-      <p><strong>The HTML version could not be loaded.</strong><br>arXiv may not have an HTML rendering of this paper yet, or you are offline.</p>
+    const errBox = () => {
+      box.innerHTML = `
+      <p><strong>${esc(T("The HTML version could not be loaded."))}</strong><br>${esc(T("arXiv may not have an HTML rendering of this paper yet, or you are offline."))}</p>
       <div class="album-actions">
-        <a class="cta" href="${ABS}" target="_blank" rel="noopener">${icon("arrow-ur")} arXiv page</a>
+        <a class="cta" href="${ABS}" target="_blank" rel="noopener">${icon("arrow-ur")} ${esc(T("arXiv page"))}</a>
         <a class="cta" href="${PDF}" target="_blank" rel="noopener">${icon("doc")} PDF</a>
       </div>`;
+    };
+    errBox(); onLang(errBox);
   }
 
   fetchFirst()

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+  <script>try{var d=document.documentElement;if(localStorage.getItem("theme")==="dark")d.setAttribute("data-theme","dark");if(/^(fr|rcf)$/.test(localStorage.getItem("lang"))){d.classList.add("i18n-pending");setTimeout(function(){d.classList.remove("i18n-pending")},2500)}}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Samuel Chan-ashing — Probability</title>
   <meta name="description" content="Samuel Chan-ashing, PhD student in probability (CEREMADE, DMA ENS, CMAP, Inria). Cutoff phenomenon, diffusions, interacting particle systems, random matrices.">
@@ -16,6 +16,7 @@
 </head>
 <body data-page="home" id="top">
 <script src="assets/js/icons.js"></script>
+<script src="assets/js/i18n.js"></script>
 <div class="page-tint"></div>
 
 <!-- Top chrome -->
@@ -23,7 +24,10 @@
 <div class="topbar">
   <span class="circle-btn ghost"></span>
   <span class="topbar-title">Samuel Chan-ashing</span>
-  <button class="circle-btn glass" type="button" data-action="theme" aria-label="Dark mode"><svg class="icon"><use href="#i-moon"/></svg></button>
+  <div class="pill-btns glass">
+    <button type="button" data-action="lang" aria-label="Français"><span class="lang-label">FR</span></button>
+    <button type="button" data-action="theme" aria-label="Dark mode"><svg class="icon"><use href="#i-moon"/></svg></button>
+  </div>
 </div>
 
 <main>
@@ -48,7 +52,7 @@
       <section class="section" id="about" aria-labelledby="about-h">
         <h2 class="section-head" id="about-h">About</h2>
         <div class="prose" id="bio">
-          <p>I am a PhD student in probability theory under the supervision of <a href="https://djalil.chafai.net/wiki/" target="_blank" rel="noopener">Djalil Chafaï</a> and <a href="https://quentincormier.org" target="_blank" rel="noopener">Quentin Cormier</a>. My research focuses on the long-time convergence of diffusions, on abrupt convergence phenomena (cutoff) and on metastability; my thesis is entitled <em>Cutoff and metastability phenomena for ergodic diffusion processes</em>. I am affiliated with Université Paris-Dauphine (CEREMADE), École Normale Supérieure (DMA), Inria Saclay (ASCII) and École Polytechnique (CMAP).</p>
+          <p data-i18n="bio">I am a PhD student in probability theory under the supervision of <a href="https://djalil.chafai.net/wiki/" target="_blank" rel="noopener">Djalil Chafaï</a> and <a href="https://quentincormier.org" target="_blank" rel="noopener">Quentin Cormier</a>. My research focuses on the long-time convergence of diffusions, on abrupt convergence phenomena (cutoff) and on metastability; my thesis is entitled <em>Cutoff and metastability phenomena for ergodic diffusion processes</em>. I am affiliated with Université Paris-Dauphine (CEREMADE), École Normale Supérieure (DMA), Inria Saclay (ASCII) and École Polytechnique (CMAP).</p>
         </div>
         <a class="latest feature press" href="portrait.html">
           <img src="assets/img/covers/portrait.webp" alt="" width="88" height="88" loading="lazy" decoding="async">

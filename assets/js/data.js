@@ -14,7 +14,8 @@ window.SITE = {
       status: "Preprint",
       coauthors: "with Quentin Cormier",
       cover: "assets/img/covers/metastable.webp",
-      tint: "#8a2440"
+      tint: "#8a2440",
+      code: "metastable",       // tools/covers/metastable.py, shown on the paper page
     },
     {
       id: "2601.20390",
@@ -23,7 +24,8 @@ window.SITE = {
       date: "2026-01-28",
       status: "Submitted",
       cover: "assets/img/covers/dyson-jacobi.webp",
-      tint: "#1d6a5b"
+      tint: "#1d6a5b",
+      code: "dyson-jacobi",     // tools/covers/dyson_jacobi.py, shown on the paper page
     },
     {
       id: "2509.19798",
@@ -37,7 +39,8 @@ window.SITE = {
       ref: "201:105054",
       doi: "",            // e.g. "10.1016/j.spa.…" — adds a "Journal" link when filled
       cover: "assets/img/covers/dyson-laguerre.webp",
-      tint: "#c4587a"
+      tint: "#c4587a",
+      code: "dyson-laguerre",   // tools/covers/dyson_laguerre.py, shown on the paper page
     }
   ]
 };
