@@ -1,0 +1,200 @@
+/* ==========================================================================
+   Paper reader — album-style header + typeset arXiv (LaTeXML) content
+   ========================================================================== */
+body.reader { --bg: color-mix(in oklab, var(--tint) 16%, #261d17); }
+body.reader .page-tint {
+  height: 120vh;
+  background: linear-gradient(to bottom, color-mix(in oklab, var(--tint) 45%, #261d17) 0%, color-mix(in oklab, var(--tint) 26%, #261d17) 45%, var(--bg) 100%);
+}
+
+/* ---------- Album header */
+.album-head { padding: calc(var(--safe-t) + 72px) var(--g) 0; text-align: center; scroll-margin-top: 0; }
+.album-cover {
+  width: min(66vw, 300px); aspect-ratio: 1; margin: 0 auto; border-radius: 10px; overflow: hidden;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, .45), 0 0 0 0.5px rgba(255, 255, 255, .08);
+}
+.album-cover img { width: 100%; height: 100%; object-fit: cover; }
+.album-title { margin: 22px 0 0; font-family: var(--font-display); font-size: 22px; line-height: 1.22; font-weight: 700; letter-spacing: -0.02em; }
+.album-artist { margin-top: 4px; font-size: 20px; color: var(--accent-2); }
+.album-journal { margin-top: 3px; font-size: 15px; color: var(--label-2); }
+.album-journal a { color: inherit; text-decoration: underline; text-decoration-color: var(--label-3); text-underline-offset: 3px; }
+.album-meta { margin-top: 6px; font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--label-2); text-transform: uppercase; }
+.album-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+.cta {
+  height: 50px; border-radius: 25px; display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: rgba(255, 255, 255, .11); color: var(--accent-2); font-size: 17px; font-weight: 600;
+  transition: transform .2s var(--spring), background .2s;
+}
+.cta .icon { font-size: 18px; }
+.cta:active { transform: scale(.96); }
+.album-desc { margin: 18px 0 0; text-align: left; font-size: 15px; line-height: 1.45; color: var(--label-2); }
+.album-desc p { margin: 0 0 6px; }
+.album-desc.clamp { -webkit-line-clamp: 3; }
+.album-head .more-btn { display: block; margin: 4px 0 0; }
+.album-foot { margin: 14px var(--g) 18px; font-size: 15px; line-height: 1.5; color: var(--label-2); display: flex; flex-direction: column; }
+.album-foot .src { color: var(--label-3); }
+.tracks .row-lead.num { width: 26px; font-size: 17px; }
+.tracks .row-lead .icon { font-size: 17px; }
+.tracks .row-trail.dots { font-size: 18px; }
+
+/* skeleton while loading */
+.skeleton-lines { display: grid; gap: 8px; }
+.skeleton-lines i, .sk { display: block; height: 12px; border-radius: 6px; background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.13), rgba(255,255,255,.06)); background-size: 200% 100%; animation: sk 1.3s linear infinite; }
+.skeleton-lines i:nth-child(2) { width: 92%; } .skeleton-lines i:nth-child(3) { width: 60%; }
+.sk { width: 60%; height: 14px; }
+.row.skeleton .row-body { min-height: 56px; }
+@keyframes sk { to { background-position: -200% 0; } }
+
+.load-error { margin: 24px var(--g); padding: 18px; border-radius: 18px; background: var(--surface); color: var(--label-2); font-size: 15px; line-height: 1.45; }
+.load-error strong { color: var(--label); }
+.load-error .album-actions { margin-top: 14px; }
+
+/* ---------- Typeset paper */
+.paper {
+  max-width: 760px; margin: 34px auto 0; padding: 0 var(--g);
+  font-size: 17px; line-height: 1.62; color: rgba(255, 255, 255, .9); overflow-wrap: break-word;
+  border-top: 0.5px solid var(--sep);
+}
+.paper:empty { display: none; }
+.paper [id] { scroll-margin-top: 84px; }
+.paper math { font-family: var(--font-math); font-size: 1.07em; }
+math { text-transform: none; letter-spacing: 0; font-family: var(--font-math); }
+.paper .ltx_para, .paper .ltx_p { margin: 0 0 14px; }
+.paper p.ltx_p:last-child { margin-bottom: 0; }
+.paper .ltx_para { margin-bottom: 14px; }
+
+.paper .ltx_title { font-family: var(--font-display); color: var(--label); letter-spacing: -0.02em; }
+.paper .ltx_title_section, .paper .ltx_title_appendix, .paper .ltx_title_bibliography {
+  margin: 46px 0 16px; font-size: 25px; line-height: 1.18; font-weight: 800;
+}
+.paper .ltx_title_section .ltx_tag, .paper .ltx_title_appendix .ltx_tag {
+  display: block; margin-bottom: 4px; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-2);
+}
+.paper .ltx_title_section .ltx_tag::before { content: "Section "; }
+.paper .ltx_title_subsection { margin: 30px 0 10px; font-size: 19px; font-weight: 700; line-height: 1.25; }
+.paper .ltx_title_subsection .ltx_tag, .paper .ltx_title_subsubsection .ltx_tag { color: var(--label-2); margin-right: .2em; }
+.paper .ltx_title_subsubsection { margin: 24px 0 8px; font-size: 17px; font-weight: 700; }
+.paper .ltx_title_paragraph { margin: 20px 0 6px; font-size: 17px; font-weight: 700; }
+.paper .ltx_paragraph > .ltx_title_paragraph + .ltx_para { margin-top: 0; }
+
+/* theorem-like environments as cards */
+.paper .ltx_theorem {
+  margin: 20px 0; padding: 14px 16px 15px; border-radius: 16px; background: rgba(255, 255, 255, .07);
+  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, .07);
+}
+.paper .ltx_theorem .ltx_title_theorem {
+  display: block; margin: 0 0 6px; font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--accent-2);
+}
+.paper .ltx_theorem .ltx_title_theorem .ltx_tag { color: inherit; }
+.paper .ltx_theorem .ltx_title_theorem .ltx_text { font-weight: inherit; font-style: normal; }
+.paper .ltx_theorem_rem, .paper .ltx_theorem_remark, .paper .ltx_theorem_exa, .paper .ltx_theorem_example { background: rgba(255, 255, 255, .04); }
+.paper .ltx_theorem_rem .ltx_title_theorem, .paper .ltx_theorem_remark .ltx_title_theorem,
+.paper .ltx_theorem_defn .ltx_title_theorem, .paper .ltx_theorem_definition .ltx_title_theorem { color: var(--label-2); }
+.paper .ltx_proof { margin: 14px 0 20px; padding-left: 14px; border-left: 2px solid rgba(255, 255, 255, .14); }
+.paper .ltx_title_proof { display: inline; margin: 0 .35em 0 0; font-family: var(--font); font-size: 1em; font-weight: 600; font-style: italic; letter-spacing: 0; color: var(--label); }
+.paper .ltx_title_proof + .ltx_para > .ltx_p:first-child { display: inline; }
+.paper .ltx_runin { display: inline; }
+
+/* equations */
+.paper .x-scroll { overflow-x: auto; overflow-y: hidden; margin: 12px 0; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.paper span.x-scroll { display: block; max-width: 100%; }
+.paper .x-block.eqn { display: flex; align-items: center; gap: 14px; }
+.paper .x-block.eqn > math { flex: 1 0 auto; }
+.paper .eqno { flex: none; display: flex; flex-direction: column; justify-content: space-around; align-self: stretch; font-size: 14px; color: var(--label-2); font-variant-numeric: tabular-nums; }
+.paper .x-inline { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; scrollbar-width: none; }
+.paper .x-inline::-webkit-scrollbar { display: none; }
+.paper .ltx_theorem, .paper .ltx_proof, .paper .ltx_para, .paper p { min-width: 0; max-width: 100%; }
+.paper table:not(.ltx_equation):not(.ltx_eqn_table):not(.ltx_equationgroup) { display: block; overflow-x: auto; max-width: 100%; }
+.paper table.ltx_equation, .paper table.ltx_equationgroup, .paper table.ltx_eqn_table { width: 100%; border-collapse: collapse; margin: 0; }
+.paper td.ltx_eqn_cell { padding: 3px 0; vertical-align: middle; }
+.paper td.ltx_eqn_center_padleft, .paper td.ltx_eqn_center_padright { width: 50%; }
+.paper td.ltx_eqn_eqno { width: 1px; white-space: nowrap; padding: 0 12px; font-size: 14px; color: var(--label-2); }
+.paper td.ltx_eqn_eqno .ltx_tag { color: var(--label-2); }
+.paper .ltx_align_left { text-align: left; } .paper .ltx_align_right { text-align: right; } .paper .ltx_align_center { text-align: center; }
+.paper math[display=block] { margin: 0 auto; }
+
+/* tables */
+.paper table.ltx_tabular { border-collapse: collapse; margin: 0 auto; font-size: 15px; }
+.paper table.ltx_tabular td, .paper table.ltx_tabular th { padding: 5px 10px; }
+.paper .ltx_border_t { border-top: 1px solid var(--sep); } .paper .ltx_border_b { border-bottom: 1px solid var(--sep); }
+.paper .ltx_border_l { border-left: 1px solid var(--sep); } .paper .ltx_border_r { border-right: 1px solid var(--sep); }
+.paper .ltx_border_tt { border-top: 2px solid var(--sep); } .paper .ltx_border_bb { border-bottom: 2px solid var(--sep); }
+.paper .ltx_border_ll { border-left: 2px solid var(--sep); } .paper .ltx_border_rr { border-right: 2px solid var(--sep); }
+.paper .ltx_th { font-weight: 600; color: var(--label); }
+
+/* figures */
+.paper figure { margin: 24px 0; text-align: center; }
+.paper figure img { display: inline-block; max-width: 100%; height: auto; border-radius: 10px; background: #fff; padding: 6px; }
+.paper figcaption { margin-top: 8px; font-size: 14px; line-height: 1.45; color: var(--label-2); text-align: left; }
+.paper figcaption .ltx_tag { color: var(--label); font-weight: 600; }
+
+/* lists */
+.paper ul.ltx_itemize, .paper ol.ltx_enumerate { margin: 0 0 14px; padding-left: 0; list-style: none; }
+.paper li.ltx_item { display: flex; gap: .6em; margin: 4px 0; list-style: none !important; }
+.paper li.ltx_item > .ltx_tag { flex: none; min-width: 1.6em; color: var(--label-2); }
+.paper li.ltx_item > .ltx_para { flex: 1; min-width: 0; margin: 0; }
+
+/* inline styles */
+.paper .ltx_font_italic { font-style: italic; } .paper .ltx_font_upright { font-style: normal; }
+.paper .ltx_font_bold { font-weight: 700; } .paper .ltx_font_medium { font-weight: 500; }
+.paper .ltx_font_smallcaps { font-variant: small-caps; }
+.paper .ltx_font_typewriter { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .92em; }
+.paper .ltx_font_sansserif { font-family: var(--font); }
+.paper .ltx_emph { font-style: italic; }
+.paper a { color: var(--accent-2); }
+.paper a.ltx_ref .ltx_tag { color: inherit; }
+.paper .ltx_cite { color: var(--label-2); }
+.paper .ltx_ERROR { color: #ffb4b4; font-family: ui-monospace, monospace; font-size: .85em; }
+.paper .ltx_centering { text-align: center; }
+.paper .ltx_quote { margin: 12px 0; padding-left: 14px; border-left: 2px solid var(--sep); color: var(--label-2); }
+
+/* footnotes: tap the mark to open */
+.paper .ltx_note_mark { color: var(--accent-2); cursor: pointer; font-size: .75em; vertical-align: super; padding: 0 .1em; }
+.paper .ltx_note_outer { display: none; }
+.paper .ltx_note.open .ltx_note_outer {
+  display: block; margin: 8px 0; padding: 10px 12px; border-radius: 12px; background: var(--surface-2); font-size: 15px; color: var(--label-2);
+}
+.paper .ltx_note_content > .ltx_note_mark { display: none; }
+
+/* bibliography */
+.paper .ltx_biblist { list-style: none; margin: 0; padding: 0; }
+.paper .ltx_bibitem { position: relative; padding: 11px 0 11px 3em; border-bottom: 0.5px solid var(--sep); font-size: 15px; line-height: 1.45; color: var(--label-2); }
+.paper .ltx_bibitem:last-child { border-bottom: 0; }
+.paper .ltx_tag_bibitem { position: absolute; left: 0; top: 11px; width: 2.6em; color: var(--label-3); font-variant-numeric: tabular-nums; }
+.paper .ltx_bibblock { display: inline; }
+.paper .ltx_bibblock + .ltx_bibblock::before { content: " "; }
+.paper .ltx_acknowledgements { margin: 30px 0; padding: 14px 16px; border-radius: 16px; background: rgba(255, 255, 255, .05); font-size: 15px; color: var(--label-2); }
+.paper .ltx_acknowledgements .ltx_title { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+.paper .paper-msc { margin-top: 30px; font-size: 13px; color: var(--label-3); }
+
+#more-by { margin-top: 44px; }
+
+/* ---------- Wide screens: cover left, details right (like Music on the web) */
+@media (min-width: 760px) {
+  .album-head { display: grid; grid-template-columns: 270px 1fr; gap: 34px; align-items: start; text-align: left; padding-top: calc(var(--safe-t) + 90px); }
+  .album-cover { width: 270px; margin: 0; }
+  .album-title { margin-top: 0; font-size: 30px; }
+  .album-artist { font-size: 22px; }
+  .album-actions { grid-template-columns: repeat(2, 150px); }
+  .album-desc { max-width: 680px; }
+  /* reading column: ~70 characters per line, wide side margins */
+  body.reader .wrap { max-width: 920px; }
+  body.reader { --g: 56px; }
+  .paper { max-width: calc(680px + 2 * var(--g)); margin-top: 48px; font-size: 18px; line-height: 1.72; }
+  .paper .ltx_theorem, .paper .thm { margin-left: -18px; margin-right: -18px; padding-left: 18px; padding-right: 18px; }
+  .paper .ltx_title_section, .paper .ltx_title_appendix, .paper .ltx_title_bibliography { font-size: 27px; margin-top: 56px; }
+}
+@media (min-width: 1100px) {
+  body.reader { --g: 64px; }
+}
+
+/* Press portrait: summary rows with longer descriptions */
+.summary .row-lead.num { align-self: flex-start; padding-top: 12px; }
+.summary .row-sub { line-height: 1.45; margin-top: 4px; }
+.summary .row-body { padding: 12px 0 14px; }
+
+/* a single action button (PDF): centred under the title on phones, left-aligned beside the cover on wide screens */
+.album-actions:has(> .cta:only-child) { grid-template-columns: minmax(0, calc(50% - 7px)); justify-content: center; }
+@media (min-width: 760px) {
+  .album-actions:has(> .cta:only-child) { grid-template-columns: 150px; justify-content: start; }
+}

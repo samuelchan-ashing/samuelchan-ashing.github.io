@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Paper — Samuel Chan-ashing</title>
+  <meta name="theme-color" content="#31261e">
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/paper.css">
+</head>
+<body data-page="paper" class="reader">
+<script src="assets/js/icons.js"></script>
+<div class="page-tint"></div>
+
+<div class="topfade"></div>
+<div class="topbar">
+  <a class="circle-btn glass" href="index.html#research" aria-label="Back"><svg class="icon"><use href="#i-chev-l"/></svg></a>
+  <span class="topbar-title" id="bar-title"></span>
+  <div class="pill-btns glass">
+    <button type="button" data-action="share" aria-label="Share"><svg class="icon"><use href="#i-share"/></svg></button>
+    <button type="button" data-action="menu" aria-label="More" aria-haspopup="menu" aria-expanded="false"><svg class="icon"><use href="#i-dots"/></svg></button>
+  </div>
+</div>
+<div class="menu glass" role="menu">
+  <a id="m-abs" href="#" target="_blank" rel="noopener" role="menuitem">Open on arXiv <svg class="icon"><use href="#i-arrow-ur"/></svg></a>
+  <a id="m-pdf" href="#" target="_blank" rel="noopener" role="menuitem">PDF <svg class="icon"><use href="#i-doc"/></svg></a>
+  <a id="m-html" href="#" target="_blank" rel="noopener" role="menuitem">HTML on arXiv <svg class="icon"><use href="#i-link"/></svg></a>
+  <a id="m-doi" href="#" target="_blank" rel="noopener" role="menuitem" hidden>Journal version <svg class="icon"><use href="#i-arrow-ur"/></svg></a>
+  <hr>
+  <button id="m-cite" type="button" data-copy="" data-msg="Citation copied" role="menuitem">Copy citation <svg class="icon"><use href="#i-copy"/></svg></button>
+  <button type="button" data-copy="url" data-msg="Link copied" role="menuitem">Copy link <svg class="icon"><use href="#i-link"/></svg></button>
+</div>
+
+<main>
+  <div class="wrap">
+    <header class="album-head">
+      <div class="album-cover"><img id="cover" src="assets/img/covers/dyson-jacobi.webp" alt="" width="800" height="800"></div>
+      <div class="album-info">
+        <h1 class="album-title" id="title">&nbsp;</h1>
+        <div class="album-artist" id="authors">Samuel Chan-ashing</div>
+        <div class="album-journal" id="journal" hidden></div>
+        <div class="album-meta" id="meta">Preprint</div>
+        <div class="album-actions">
+          <a class="cta" id="pdf-btn" href="#" target="_blank" rel="noopener"><svg class="icon"><use href="#i-doc"/></svg> PDF</a>
+        </div>
+        <div class="album-desc" id="abstract"><span class="skeleton-lines"><i></i><i></i><i></i></span></div>
+      </div>
+    </header>
+
+    <section class="block" aria-label="Contents">
+      <ol class="rows tracks" id="tracks">
+        <li class="row skeleton"><div><span class="row-lead num">·</span><span class="row-body"><span class="sk"></span></span></div></li>
+        <li class="row skeleton"><div><span class="row-lead num">·</span><span class="row-body"><span class="sk"></span></span></div></li>
+        <li class="row skeleton"><div><span class="row-lead num">·</span><span class="row-body"><span class="sk"></span></span></div></li>
+      </ol>
+      <div class="album-foot" id="foot"></div>
+      <ul class="chips" id="keywords"></ul>
+    </section>
+
+    <div class="load-error" id="error" hidden></div>
+
+    <article class="paper" id="paper-body" aria-live="polite"></article>
+
+    <section class="block" id="more-by" hidden>
+      <h2 class="section-head">More by Samuel Chan-ashing</h2>
+      <ul class="carousel" id="more-list"></ul>
+    </section>
+  </div>
+</main>
+
+<div class="dock" data-active="research">
+  <nav class="tabs glass" aria-label="Sections">
+    <a class="tab" href="index.html#top" data-tab="home" data-icon="home"><svg class="icon"><use href="#i-home"/></svg><span>Home</span></a>
+    <a class="tab" href="index.html#research" data-tab="research" data-icon="sigma"><svg class="icon"><use href="#i-sigma"/></svg><span>Research</span></a>
+    <a class="tab" href="index.html#vita" data-tab="vita" data-icon="vita"><svg class="icon"><use href="#i-vita"/></svg><span>Vita</span></a>
+    <a class="tab" href="index.html#teaching" data-tab="teaching" data-icon="cap"><svg class="icon"><use href="#i-cap"/></svg><span>Teaching</span></a>
+    <a class="tab" href="agregation.html" data-tab="agreg" data-icon="books"><svg class="icon"><use href="#i-books"/></svg><span>Agrégation</span></a>
+  </nav>
+  <button class="orb orb-right glass" type="button" aria-label="Show sections"><svg class="icon"><use href="#i-sigma"/></svg></button>
+</div>
+
+<noscript><p style="padding:120px 20px;text-align:center">This page needs JavaScript to load the paper from arXiv. <a href="https://arxiv.org/" style="color:#f26b55">Open arXiv</a>.</p></noscript>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/reader.js"></script>
+<script src="assets/js/paper.js"></script>
+</body>
+</html>
