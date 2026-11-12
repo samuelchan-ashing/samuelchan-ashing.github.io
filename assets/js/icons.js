@@ -12,6 +12,8 @@
     "chev-l": '<path d="M15.2 4.2 7.4 12l7.8 7.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>',
     "chev-r": '<path d="m9 4.5 7.5 7.5L9 19.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>',
     share: '<path d="M12 14.6V3.4M8 7.2l4-4 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.4 10.2H7.3a2 2 0 0 0-2 2v7.4a2 2 0 0 0 2 2h9.4a2 2 0 0 0 2-2v-7.4a2 2 0 0 0-2-2h-1.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+    moon: '<path d="M20.4 14.4a8.4 8.4 0 0 1-10.8-10.8.7.7 0 0 0-.9-.9 9.6 9.6 0 1 0 12.6 12.6.7.7 0 0 0-.9-.9z"/>',
+    sun: '<circle cx="12" cy="12" r="4.3"/><path d="M12 1.9v2.3M12 19.8v2.3M1.9 12h2.3M19.8 12h2.3M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>',
     dots: '<circle cx="4.8" cy="12" r="2.1"/><circle cx="12" cy="12" r="2.1"/><circle cx="19.2" cy="12" r="2.1"/>',
     play: '<path d="M7 4.6v14.8c0 .9 1 1.4 1.7 1L21 12.9c.7-.4.7-1.4 0-1.8L8.7 3.6c-.7-.5-1.7 0-1.7 1z"/>',
     fwd: '<path d="M1.8 6.4v11.2c0 .7.8 1.2 1.4.8L11.4 13v4.6c0 .7.8 1.2 1.4.8l9.2-5.6c.6-.4.6-1.2 0-1.6l-9.2-5.6c-.6-.4-1.4.1-1.4.8V11L3.2 5.6c-.6-.4-1.4.1-1.4.8z"/>',

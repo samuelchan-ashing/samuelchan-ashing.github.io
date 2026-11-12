@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{{TITLE}} — Samuel Chan-ashing</title>
   <meta name="description" content="{{DESCRIPTION}}">
-  <meta name="theme-color" content="#31261e">
+  <meta name="theme-color" content="#f0ebe3">
   <link rel="icon" href="../assets/img/favicon.png">
   <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
   <link rel="stylesheet" href="../assets/css/site.css">
@@ -21,6 +22,7 @@
   <a class="circle-btn glass" href="../index.html#research" aria-label="Back"><svg class="icon"><use href="#i-chev-l"/></svg></a>
   <span class="topbar-title">{{TITLE}}</span>
   <div class="pill-btns glass">
+    <button type="button" data-action="theme" aria-label="Dark mode"><svg class="icon"><use href="#i-moon"/></svg></button>
     <button type="button" data-action="share" aria-label="Share"><svg class="icon"><use href="#i-share"/></svg></button>
     <button type="button" data-action="menu" aria-label="More" aria-haspopup="menu" aria-expanded="false"><svg class="icon"><use href="#i-dots"/></svg></button>
   </div>

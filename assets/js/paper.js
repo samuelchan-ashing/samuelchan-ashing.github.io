@@ -182,10 +182,40 @@
       $("#abstract").remove();
     }
 
-    const kw = art.querySelector(".ltx_keywords");
-    if (kw) {
-      const words = textOf(kw, ".ltx_title, .ltx_note").split(/[;,]\s*/).map((w) => w.replace(/[.;,]$/, "").trim()).filter(Boolean);
+    // ---- keywords and subject classification.
+    // Papers written with \keywords / \subjclass give .ltx_keywords / .ltx_classification; others write them as
+    // plain paragraphs ("Keywords. …", "Mathematics Subject Classification. …") before the first section.
+    // Both cases end up in the same place: chips for the keywords, one line for the classification.
+    const KW_RE = /^\s*(key\s*words(\s+and\s+phrases)?|keywords)\s*[.:]\s*/i;
+    const MSC_RE = /^\s*(\d{4}\s+)?(mathematics\s+subject\s+classifications?|ams\s+subject\s+classifications?|msc(\s*\d{4})?)(\s*\(?\d{4}\)?)?\s*[.:]\s*/i;
+    const front = [];
+    for (const child of art.children) {
+      if (child.matches("section, nav.ltx_TOC")) break;
+      if (child.matches(".ltx_para")) front.push(child);
+    }
+    let kwText = "", mscText = "", mscYear = "";
+    const kwEl = art.querySelector(".ltx_keywords");
+    if (kwEl) kwText = textOf(kwEl, ".ltx_title, .ltx_note");
+    const mscEl = art.querySelector(".ltx_classification");
+    if (mscEl) {
+      const title = textOf(mscEl.querySelector(".ltx_title"));
+      mscYear = (title.match(/\b(19|20)\d\d\b/) || [""])[0];
+      mscText = textOf(mscEl, ".ltx_title, .ltx_note");
+    }
+    const looseFront = [];
+    for (const para of front) {
+      const tx = textOf(para);
+      if (!kwText && KW_RE.test(tx)) { kwText = tx.replace(KW_RE, ""); looseFront.push(para); }
+      else if (!mscText && MSC_RE.test(tx)) { mscYear = (tx.match(/\b(19|20)\d\d\b/) || [""])[0]; mscText = tx.replace(MSC_RE, ""); looseFront.push(para); }
+    }
+    if (kwText) {
+      const words = kwText.split(/[;,]\s*/).map((w) => w.replace(/[.;,]$/, "").trim()).filter(Boolean);
       $("#keywords").innerHTML = words.map((w) => `<li class="chip">${esc(w)}</li>`).join("");
+    }
+    if (mscText) {
+      const m = $("#msc");
+      m.innerHTML = `<span class="msc-label">Mathematics Subject Classification</span> ${esc(mscText.replace(/[.\s]+$/, ""))}`;
+      m.hidden = false;
     }
 
     // ---- body: everything except the front matter rendered above
@@ -193,15 +223,8 @@
     const body = $("#paper-body");
     body.innerHTML = "";
     for (const child of [...art.children]) {
-      if (child.matches(skip)) continue;
+      if (child.matches(skip) || looseFront.includes(child)) continue;
       body.appendChild(document.importNode(child, true));
-    }
-    const msc = art.querySelector(".ltx_classification");
-    if (msc) {
-      const p = document.createElement("p");
-      p.className = "paper-msc";
-      p.textContent = textOf(msc, ".ltx_note");
-      body.appendChild(p);
     }
 
     // "1. " -> "1" in section labels (the label is styled as a kicker above the title)

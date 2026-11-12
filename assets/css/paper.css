@@ -1,30 +1,34 @@
 /* ==========================================================================
    Paper reader — album-style header + typeset arXiv (LaTeXML) content
    ========================================================================== */
-body.reader { --bg: color-mix(in oklab, var(--tint) 16%, #261d17); }
+/* the page takes a light wash of the artwork's colour, like an album page in Music */
+body.reader { --bg: color-mix(in oklab, var(--tint) 6%, var(--base)); }
 body.reader .page-tint {
   height: 120vh;
-  background: linear-gradient(to bottom, color-mix(in oklab, var(--tint) 45%, #261d17) 0%, color-mix(in oklab, var(--tint) 26%, #261d17) 45%, var(--bg) 100%);
+  background: linear-gradient(to bottom, color-mix(in oklab, var(--tint) 20%, var(--base)) 0%, color-mix(in oklab, var(--tint) 11%, var(--base)) 45%, var(--bg) 100%);
 }
 
 /* ---------- Album header */
 .album-head { padding: calc(var(--safe-t) + 72px) var(--g) 0; text-align: center; scroll-margin-top: 0; }
 .album-cover {
   width: min(66vw, 300px); aspect-ratio: 1; margin: 0 auto; border-radius: 10px; overflow: hidden;
-  box-shadow: 0 22px 60px rgba(0, 0, 0, .45), 0 0 0 0.5px rgba(255, 255, 255, .08);
+  box-shadow: 0 18px 46px color-mix(in srgb, var(--drop) 32%, transparent), 0 0 0 0.5px color-mix(in srgb, var(--shade) 10%, transparent);
 }
 .album-cover img { width: 100%; height: 100%; object-fit: cover; }
 .album-title { margin: 22px 0 0; font-family: var(--font-display); font-size: 22px; line-height: 1.22; font-weight: 700; letter-spacing: -0.02em; }
-.album-artist { margin-top: 4px; font-size: 20px; color: var(--accent-2); }
+.album-artist { margin-top: 4px; font-size: 20px; color: var(--label); }
 .album-journal { margin-top: 3px; font-size: 15px; color: var(--label-2); }
 .album-journal a { color: inherit; text-decoration: underline; text-decoration-color: var(--label-3); text-underline-offset: 3px; }
 .album-meta { margin-top: 6px; font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--label-2); text-transform: uppercase; }
 .album-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
 .cta {
-  height: 50px; border-radius: 25px; display: flex; align-items: center; justify-content: center; gap: 8px;
-  background: rgba(255, 255, 255, .11); color: var(--accent-2); font-size: 17px; font-weight: 600;
+  height: 50px; padding: 0 30px; border-radius: 25px; display: flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap;
+  background: var(--surface-2); color: var(--label); font-size: 17px; font-weight: 600;
   transition: transform .2s var(--spring), background .2s;
 }
+/* first action = primary: black pill, like the Play button in Music */
+.album-actions .cta:first-child { background: var(--primary); color: var(--on-primary); }
+@media (hover: hover) { .album-actions .cta:first-child:hover { background: color-mix(in oklab, var(--primary) 82%, var(--bg)); } .cta:not(:first-child):hover { background: color-mix(in srgb, var(--shade) 16%, transparent); } }
 .cta .icon { font-size: 18px; }
 .cta:active { transform: scale(.96); }
 .album-desc { margin: 18px 0 0; text-align: left; font-size: 15px; line-height: 1.45; color: var(--label-2); }
@@ -39,20 +43,20 @@ body.reader .page-tint {
 
 /* skeleton while loading */
 .skeleton-lines { display: grid; gap: 8px; }
-.skeleton-lines i, .sk { display: block; height: 12px; border-radius: 6px; background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.13), rgba(255,255,255,.06)); background-size: 200% 100%; animation: sk 1.3s linear infinite; }
+.skeleton-lines i, .sk { display: block; height: 12px; border-radius: 6px; background: linear-gradient(90deg, color-mix(in srgb, var(--shade) 7%, transparent), color-mix(in srgb, var(--shade) 13%, transparent), color-mix(in srgb, var(--shade) 7%, transparent)); background-size: 200% 100%; animation: sk 1.3s linear infinite; }
 .skeleton-lines i:nth-child(2) { width: 92%; } .skeleton-lines i:nth-child(3) { width: 60%; }
 .sk { width: 60%; height: 14px; }
 .row.skeleton .row-body { min-height: 56px; }
 @keyframes sk { to { background-position: -200% 0; } }
 
-.load-error { margin: 24px var(--g); padding: 18px; border-radius: 18px; background: var(--surface); color: var(--label-2); font-size: 15px; line-height: 1.45; }
+.load-error { margin: 24px var(--g); padding: 18px; border-radius: 18px; background: var(--card); color: var(--label-2); font-size: 15px; line-height: 1.45; }
 .load-error strong { color: var(--label); }
 .load-error .album-actions { margin-top: 14px; }
 
 /* ---------- Typeset paper */
 .paper {
   max-width: 760px; margin: 34px auto 0; padding: 0 var(--g);
-  font-size: 17px; line-height: 1.62; color: rgba(255, 255, 255, .9); overflow-wrap: break-word;
+  font-size: 17px; line-height: 1.62; color: var(--ink); overflow-wrap: break-word;
   border-top: 0.5px solid var(--sep);
 }
 .paper:empty { display: none; }
@@ -79,18 +83,18 @@ math { text-transform: none; letter-spacing: 0; font-family: var(--font-math); }
 
 /* theorem-like environments as cards */
 .paper .ltx_theorem {
-  margin: 20px 0; padding: 14px 16px 15px; border-radius: 16px; background: rgba(255, 255, 255, .07);
-  box-shadow: inset 0 0 0 0.5px rgba(255, 255, 255, .07);
+  margin: 20px 0; padding: 14px 16px 15px; border-radius: 16px; background: var(--card);
+  box-shadow: inset 0 0 0 0.5px color-mix(in srgb, var(--shade) 7%, transparent);
 }
 .paper .ltx_theorem .ltx_title_theorem {
   display: block; margin: 0 0 6px; font-family: var(--font); font-size: 13px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--accent-2);
 }
 .paper .ltx_theorem .ltx_title_theorem .ltx_tag { color: inherit; }
 .paper .ltx_theorem .ltx_title_theorem .ltx_text { font-weight: inherit; font-style: normal; }
-.paper .ltx_theorem_rem, .paper .ltx_theorem_remark, .paper .ltx_theorem_exa, .paper .ltx_theorem_example { background: rgba(255, 255, 255, .04); }
+.paper .ltx_theorem_rem, .paper .ltx_theorem_remark, .paper .ltx_theorem_exa, .paper .ltx_theorem_example { background: color-mix(in srgb, var(--paper) 22%, transparent); }
 .paper .ltx_theorem_rem .ltx_title_theorem, .paper .ltx_theorem_remark .ltx_title_theorem,
 .paper .ltx_theorem_defn .ltx_title_theorem, .paper .ltx_theorem_definition .ltx_title_theorem { color: var(--label-2); }
-.paper .ltx_proof { margin: 14px 0 20px; padding-left: 14px; border-left: 2px solid rgba(255, 255, 255, .14); }
+.paper .ltx_proof { margin: 14px 0 20px; padding-left: 14px; border-left: 2px solid color-mix(in srgb, var(--shade) 20%, transparent); }
 .paper .ltx_title_proof { display: inline; margin: 0 .35em 0 0; font-family: var(--font); font-size: 1em; font-weight: 600; font-style: italic; letter-spacing: 0; color: var(--label); }
 .paper .ltx_title_proof + .ltx_para > .ltx_p:first-child { display: inline; }
 .paper .ltx_runin { display: inline; }
@@ -144,7 +148,7 @@ math { text-transform: none; letter-spacing: 0; font-family: var(--font-math); }
 .paper a { color: var(--accent-2); }
 .paper a.ltx_ref .ltx_tag { color: inherit; }
 .paper .ltx_cite { color: var(--label-2); }
-.paper .ltx_ERROR { color: #ffb4b4; font-family: ui-monospace, monospace; font-size: .85em; }
+.paper .ltx_ERROR { color: var(--accent-2); font-family: ui-monospace, monospace; font-size: .85em; }
 .paper .ltx_centering { text-align: center; }
 .paper .ltx_quote { margin: 12px 0; padding-left: 14px; border-left: 2px solid var(--sep); color: var(--label-2); }
 
@@ -152,7 +156,7 @@ math { text-transform: none; letter-spacing: 0; font-family: var(--font-math); }
 .paper .ltx_note_mark { color: var(--accent-2); cursor: pointer; font-size: .75em; vertical-align: super; padding: 0 .1em; }
 .paper .ltx_note_outer { display: none; }
 .paper .ltx_note.open .ltx_note_outer {
-  display: block; margin: 8px 0; padding: 10px 12px; border-radius: 12px; background: var(--surface-2); font-size: 15px; color: var(--label-2);
+  display: block; margin: 8px 0; padding: 10px 12px; border-radius: 12px; background: var(--card); font-size: 15px; color: var(--label-2);
 }
 .paper .ltx_note_content > .ltx_note_mark { display: none; }
 
@@ -163,9 +167,10 @@ math { text-transform: none; letter-spacing: 0; font-family: var(--font-math); }
 .paper .ltx_tag_bibitem { position: absolute; left: 0; top: 11px; width: 2.6em; color: var(--label-3); font-variant-numeric: tabular-nums; }
 .paper .ltx_bibblock { display: inline; }
 .paper .ltx_bibblock + .ltx_bibblock::before { content: " "; }
-.paper .ltx_acknowledgements { margin: 30px 0; padding: 14px 16px; border-radius: 16px; background: rgba(255, 255, 255, .05); font-size: 15px; color: var(--label-2); }
+.paper .ltx_acknowledgements { margin: 30px 0; padding: 14px 16px; border-radius: 16px; background: var(--card); font-size: 15px; color: var(--label-2); }
 .paper .ltx_acknowledgements .ltx_title { display: block; font-size: 13px; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
-.paper .paper-msc { margin-top: 30px; font-size: 13px; color: var(--label-3); }
+.album-msc { margin: 14px var(--g) 0; font-size: 14px; line-height: 1.5; color: var(--label-2); }
+.album-msc .msc-label { display: block; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--label-3); margin-bottom: 2px; }
 
 #more-by { margin-top: 44px; }
 
@@ -194,7 +199,13 @@ math { text-transform: none; letter-spacing: 0; font-family: var(--font-math); }
 .summary .row-body { padding: 12px 0 14px; }
 
 /* a single action button (PDF): centred under the title on phones, left-aligned beside the cover on wide screens */
-.album-actions:has(> .cta:only-child) { grid-template-columns: minmax(0, calc(50% - 7px)); justify-content: center; }
+.album-actions:has(> .cta:only-child) { grid-template-columns: minmax(min(190px, 100%), max-content); justify-content: center; }
 @media (min-width: 760px) {
-  .album-actions:has(> .cta:only-child) { grid-template-columns: 150px; justify-content: start; }
+  .album-actions:has(> .cta:only-child) { grid-template-columns: minmax(160px, max-content); justify-content: start; }
+}
+
+/* Dark mode: the page takes a deeper wash of the artwork's colour */
+:root[data-theme="dark"] body.reader { --bg: color-mix(in oklab, var(--tint) 16%, #261d17); }
+:root[data-theme="dark"] body.reader .page-tint {
+  background: linear-gradient(to bottom, color-mix(in oklab, var(--tint) 45%, #261d17) 0%, color-mix(in oklab, var(--tint) 26%, #261d17) 45%, var(--bg) 100%);
 }

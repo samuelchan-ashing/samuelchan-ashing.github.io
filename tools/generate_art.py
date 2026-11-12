@@ -88,6 +88,26 @@ def hero():
     save(fig, "hero")
 
 
+def hero_light():
+    """Same Dyson Brownian motion as hero(), drawn tone-on-tone for the light sand theme."""
+    n, steps = 46, 900
+    t, ev = dyson_bm(n, steps)
+    W, Hpx = 1800, 1800
+    fig, ax = canvas(Hpx, "#c8baa1", W)
+    gradient_bg(ax, "#c4b59b", "#c9bba3", [-1, 1, 1, -0.02])
+    span = 2 * np.sqrt(n)
+    cmap = LinearSegmentedColormap.from_list("hl", ["#8a6a48", "#b4482f", "#8c2c3a", "#8a6a48"])
+    xs, ys, cs = [], [], []
+    for i in range(n):
+        xs.append(ev[:, i] / span * 1.9); ys.append(t ** 0.85 * 1.08)
+        cs.append(cmap(abs(i - (n - 1) / 2) / ((n - 1) / 2)))
+    for x, y in zip(xs, ys):   # soft light halo under each path
+        ax.plot(x, y, color="#e9dfcc", lw=2.6, alpha=0.35, solid_capstyle="round", zorder=2)
+    glow_lines(ax, xs, ys, cs, lw=0.9, alpha=0.72, glow=False)
+    ax.set_xlim(-1, 1); ax.set_ylim(1, -0.02)
+    save(fig, "hero-light")
+
+
 # ---------------------------------------------------------------- Dyson-Laguerre
 def laguerre():
     n, m, steps = 22, 30, 700

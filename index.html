@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>try{if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Samuel Chan-ashing — Probability</title>
   <meta name="description" content="Samuel Chan-ashing, PhD student in probability (CEREMADE, DMA ENS, CMAP, Inria). Cutoff phenomenon, diffusions, interacting particle systems, random matrices.">
-  <meta name="theme-color" content="#31261e">
+  <meta name="theme-color" content="#f0ebe3">
   <meta property="og:title" content="Samuel Chan-ashing">
   <meta property="og:description" content="PhD student in probability — cutoff phenomenon, diffusions, random matrices.">
   <meta property="og:image" content="assets/img/hero.webp">
@@ -22,14 +23,14 @@
 <div class="topbar">
   <span class="circle-btn ghost"></span>
   <span class="topbar-title">Samuel Chan-ashing</span>
-  <span class="circle-btn ghost"></span>
+  <button class="circle-btn glass" type="button" data-action="theme" aria-label="Dark mode"><svg class="icon"><use href="#i-moon"/></svg></button>
 </div>
 
 <main>
   <!-- ============================== HOME ============================== -->
   <div data-tab-section="home">
     <header class="hero">
-      <div class="hero-art" role="img" aria-label="Simulated eigenvalue trajectories of a Dyson Brownian motion"></div>
+      <div class="hero-art" role="img" aria-label="Simulation artwork"></div>
       <div class="hero-inner">
         <h1 class="wordmark">Samuel Chan-ashing</h1>
         <p class="hero-sub">PhD student in probability · Paris</p>
@@ -50,7 +51,7 @@
           <p>I am a PhD student in probability theory under the supervision of <a href="https://djalil.chafai.net/wiki/" target="_blank" rel="noopener">Djalil Chafaï</a> and <a href="https://quentincormier.org" target="_blank" rel="noopener">Quentin Cormier</a>. My research focuses on the long-time convergence of diffusions, on abrupt convergence phenomena (cutoff) and on metastability; my thesis is entitled <em>Cutoff and metastability phenomena for ergodic diffusion processes</em>. I am affiliated with Université Paris-Dauphine (CEREMADE), École Normale Supérieure (DMA), Inria Saclay (ASCII) and École Polytechnique (CMAP).</p>
         </div>
         <a class="latest feature press" href="portrait.html">
-          <span class="feature-icon" aria-hidden="true"><svg class="icon"><use href="#i-news"/></svg></span>
+          <img src="assets/img/covers/portrait.webp" alt="" width="88" height="88" loading="lazy" decoding="async">
           <span class="latest-body">
             <span class="latest-date">In the press · April 2026</span>
             <span class="latest-title" style="text-transform:none">Portrait in Réunionnais du Monde</span>
@@ -77,7 +78,7 @@
     </section>
 
     <section class="block" aria-labelledby="papers-h">
-      <h3 class="section-head" id="papers-h"><a href="https://arxiv.org/search/?searchtype=author&amp;query=Chan-ashing%2C+Samuel" target="_blank" rel="noopener">Papers <svg class="icon"><use href="#i-chev-r"/></svg></a></h3>
+      <h3 class="section-head" id="papers-h"><button class="view-toggle" type="button" aria-expanded="false" aria-controls="papers-list">Papers <svg class="icon"><use href="#i-chev-r"/></svg></button></h3>
       <ul class="carousel">
         <li class="card"><a href="paper.html?id=2610.13655" title="Metastable confinement of particle systems near linearly stable McKean–Vlasov equilibria">
           <div class="art"><img src="assets/img/covers/metastable.webp" alt="Simulated particle systems jumping away from a metastable equilibrium" width="800" height="800" loading="lazy" decoding="async"><span class="badge">arXiv</span></div>
@@ -92,10 +93,16 @@
           <div class="card-title">Cutoff for Dyson–Laguerre</div>
           <div class="card-sub">2026 · SPA</div></a></li>
       </ul>
+      <ul class="rows list-view" id="papers-list" hidden>
+        <li class="row"><a href="paper.html?id=2610.13655"><span class="row-lead year">2026</span><span class="row-body"><span class="row-title wrap-ok">Metastable confinement of particle systems near linearly stable McKean–Vlasov equilibria</span><span class="row-sub">with Quentin Cormier · Preprint · arXiv:2610.13655</span></span><span class="row-trail chev"><svg class="icon"><use href="#i-chev-r"/></svg></span></a></li>
+        <li class="row"><a href="paper.html?id=2601.20390"><span class="row-lead year">2026</span><span class="row-body"><span class="row-title wrap-ok">On the cutoff phenomenon for Dyson–Jacobi processes</span><span class="row-sub">Submitted · arXiv:2601.20390</span></span><span class="row-trail chev"><svg class="icon"><use href="#i-chev-r"/></svg></span></a></li>
+        <li class="row"><a href="paper.html?id=2509.19798"><span class="row-lead year">2026</span><span class="row-body"><span class="row-title wrap-ok">On the cutoff phenomenon for Dyson–Laguerre processes</span><span class="row-sub"><em>Stochastic Processes and their Applications</em> 201:105054 · arXiv:2509.19798</span></span><span class="row-trail chev"><svg class="icon"><use href="#i-chev-r"/></svg></span></a></li>
+        <li class="row"><a href="https://arxiv.org/search/?searchtype=author&amp;query=Chan-ashing%2C+Samuel" target="_blank" rel="noopener"><span class="row-lead year"></span><span class="row-body"><span class="row-title muted">All my papers on arXiv</span></span><span class="row-trail chev"><svg class="icon"><use href="#i-arrow-ur"/></svg></span></a></li>
+      </ul>
     </section>
 
     <section class="block" aria-labelledby="stays-h">
-      <h3 class="section-head" id="stays-h">Research stays</h3>
+      <h3 class="section-head" id="stays-h"><button class="view-toggle" type="button" aria-expanded="false" aria-controls="stays-list">Research stays <svg class="icon"><use href="#i-chev-r"/></svg></button></h3>
       <ul class="carousel">
         <li class="card"><a href="stays/cutoff-2024.html" title="Cutoff phenomenon for ergodic diffusion processes">
           <div class="art"><img src="assets/img/covers/cutoff.webp" alt="" width="800" height="800" loading="lazy" decoding="async"><span class="badge">Memoir</span></div>
@@ -113,6 +120,12 @@
           <div class="art"><img src="assets/img/covers/uncertainty.webp" alt="" width="800" height="800" loading="lazy" decoding="async"><span class="badge">Memoir</span></div>
           <div class="card-title">Uncertainty principles</div>
           <div class="card-sub">2021 · ENS Rennes</div></a></li>
+      </ul>
+      <ul class="rows list-view" id="stays-list" hidden>
+        <li class="row"><a href="stays/cutoff-2024.html"><span class="row-lead year">2024</span><span class="row-body"><span class="row-title wrap-ok">Cutoff phenomenon for ergodic diffusion processes</span><span class="row-sub">Master 2 research stay · DMA, ENS Paris · supervised by Djalil Chafaï</span></span><span class="row-trail chev"><svg class="icon"><use href="#i-chev-r"/></svg></span></a></li>
+        <li class="row"><a href="stays/turbulence-2022.html"><span class="row-lead year">2022</span><span class="row-body"><span class="row-title wrap-ok">Random dynamical systems theory and application to turbulence</span><span class="row-sub">Master research stay · DPMMS, University of Cambridge · supervised by Clément Mouhot</span></span><span class="row-trail chev"><svg class="icon"><use href="#i-chev-r"/></svg></span></a></li>
+        <li class="row"><a href="stays/n-body-2021.html"><span class="row-lead year">2021</span><span class="row-body"><span class="row-title wrap-ok">N-body problems when N is large</span><span class="row-sub">Bachelor research stay · CMLS, École Polytechnique · supervised by Samir Salem · in French</span></span><span class="row-trail chev"><svg class="icon"><use href="#i-chev-r"/></svg></span></a></li>
+        <li class="row"><a href="stays/logvinenko-sereda-2021.html"><span class="row-lead year">2021</span><span class="row-body"><span class="row-title wrap-ok">Uncertainty principles and the Logvinenko–Sereda theorem</span><span class="row-sub">Research seminar · ENS Rennes · with Bastien Lecluse, supervised by Jérémy Martin · in French</span></span><span class="row-trail chev"><svg class="icon"><use href="#i-chev-r"/></svg></span></a></li>
       </ul>
     </section>
 
@@ -141,13 +154,13 @@
     <section class="block" aria-labelledby="edu-h">
       <h3 class="section-head" id="edu-h">Education</h3>
       <ul class="rows">
-        <li class="row"><div><span class="row-lead year">2024–27</span><span class="row-body"><span class="row-title wrap-ok">PhD in Mathematics</span><span class="row-sub">Université PSL (Dauphine, ENS) &amp; École Polytechnique (X, Inria)</span><span class="row-sub dim">Thesis: <em>Cutoff and metastability phenomena for ergodic diffusion processes</em></span></span></div></li>
-        <li class="row"><div><span class="row-lead year">2023–24</span><span class="row-body"><span class="row-title wrap-ok">Master 2, Probability and Stochastic Models</span><span class="row-sub">Sorbonne Université</span></span></div></li>
-        <li class="row"><div><span class="row-lead year">2022–23</span><span class="row-body"><span class="row-title wrap-ok">Agrégation of mathematics</span><span class="row-sub">Université de Rennes</span></span></div></li>
-        <li class="row"><div><span class="row-lead year">2021–22</span><span class="row-body"><span class="row-title wrap-ok">Master 1, Fundamental Mathematics</span><span class="row-sub">Université Rennes 1</span></span></div></li>
-        <li class="row"><div><span class="row-lead year">2020–21</span><span class="row-body"><span class="row-title wrap-ok">Bachelor, Fundamental Mathematics</span><span class="row-sub">Université Rennes 1</span></span></div></li>
-        <li class="row"><div><span class="row-lead year">2020–24</span><span class="row-body"><span class="row-title wrap-ok">École Normale Supérieure de Rennes</span></span></div></li>
-        <li class="row"><div><span class="row-lead year">2017–20</span><span class="row-body"><span class="row-title wrap-ok">Preparatory classes</span><span class="row-sub">Lycée LaSalle Saint-Charles, La Réunion</span></span></div></li>
+        <li class="row"><div><span class="row-lead year">2024–2027</span><span class="row-body"><span class="row-title wrap-ok">PhD in Mathematics</span><span class="row-sub">Université Paris-Dauphine (CEREMADE), ENS (DMA), École Polytechnique (CMAP), Inria (ASCII)</span><span class="row-sub dim">Thesis: <em>Cutoff and metastability phenomena for ergodic diffusion processes</em></span></span></div></li>
+        <li class="row"><a href="https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-mathematiques-et-applications-offre-2025-6" target="_blank" rel="noopener"><span class="row-lead year">2023–2024</span><span class="row-body"><span class="row-title wrap-ok">Master 2, Probability and Stochastic Models</span><span class="row-sub">Sorbonne Université</span></span></a></li>
+        <li class="row"><a href="https://math.univ-rennes.fr/master-parcours-mathematiques-avancees-pour-lenseignement-secondaire-et-superieur" target="_blank" rel="noopener"><span class="row-lead year">2022–2023</span><span class="row-body"><span class="row-title wrap-ok">Agrégation of mathematics</span><span class="row-sub">Université de Rennes</span></span></a></li>
+        <li class="row"><a href="https://math.univ-rennes.fr/master-parcours-mathematiques-fondamentales" target="_blank" rel="noopener"><span class="row-lead year">2021–2022</span><span class="row-body"><span class="row-title wrap-ok">Master 1, Fundamental Mathematics</span><span class="row-sub">Université Rennes 1</span></span></a></li>
+        <li class="row"><a href="https://math.univ-rennes.fr/licence-mention-mathematiques" target="_blank" rel="noopener"><span class="row-lead year">2020–2021</span><span class="row-body"><span class="row-title wrap-ok">Bachelor, Fundamental Mathematics</span><span class="row-sub">Université Rennes 1</span></span></a></li>
+        <li class="row"><a href="https://math.ens-rennes.fr" target="_blank" rel="noopener"><span class="row-lead year">2020–2024</span><span class="row-body"><span class="row-title wrap-ok">École Normale Supérieure de Rennes</span></span></a></li>
+        <li class="row"><a href="https://lasalle.stcharles.fr/2023/03/06/cpge/" target="_blank" rel="noopener"><span class="row-lead year">2017–2020</span><span class="row-body"><span class="row-title wrap-ok">Preparatory classes</span><span class="row-sub">Lycée LaSalle Saint-Charles, La Réunion</span></span></a></li>
       </ul>
     </section>
 
@@ -163,7 +176,7 @@
     <section class="block" aria-labelledby="exp-h">
       <h3 class="section-head" id="exp-h">Experience</h3>
       <ul class="rows">
-        <li class="row"><div><span class="row-lead year">2021–22</span><span class="row-body"><span class="row-title wrap-ok">President of the Student Council</span><span class="row-sub">ENS Rennes</span></span></div></li>
+        <li class="row"><div><span class="row-lead year">2021–2022</span><span class="row-body"><span class="row-title wrap-ok">President of the Student Council</span><span class="row-sub">ENS Rennes</span></span></div></li>
       </ul>
     </section>
 
@@ -183,10 +196,10 @@
     <section class="block" aria-labelledby="courses-h">
       <h3 class="section-head" id="courses-h">Courses</h3>
       <ul class="rows">
-        <li class="row"><div><span class="row-lead year">2025–27</span><span class="row-body"><span class="row-title wrap-ok">Analysis 3</span><span class="row-sub">Tutorials · Undergraduate, Université Paris-Dauphine</span></span></div></li>
-        <li class="row"><div><span class="row-lead year">2024–25</span><span class="row-body"><span class="row-title wrap-ok">Introduction to probability</span><span class="row-sub">Tutorials · Undergraduate, Université Paris-Dauphine</span></span></div></li>
-        <li class="row"><div><span class="row-lead year">2023–24</span><span class="row-body"><span class="row-title wrap-ok">Oral examiner in mathematics</span><span class="row-sub">French preparatory classes (ECG), IPESUP, Paris</span></span></div></li>
-        <li class="row"><div><span class="row-lead year">2021–23</span><span class="row-body"><span class="row-title wrap-ok">Oral examiner in mathematics</span><span class="row-sub">French preparatory classes (PCSI), Lycée Assomption, Rennes</span></span></div></li>
+        <li class="row"><div><span class="row-lead year">2025–2027</span><span class="row-body"><span class="row-title wrap-ok">Analysis 3</span><span class="row-sub">Tutorials · Undergraduate, Université Paris-Dauphine</span></span></div></li>
+        <li class="row"><div><span class="row-lead year">2024–2025</span><span class="row-body"><span class="row-title wrap-ok">Introduction to probability</span><span class="row-sub">Tutorials · Undergraduate, Université Paris-Dauphine</span></span></div></li>
+        <li class="row"><div><span class="row-lead year">2023–2024</span><span class="row-body"><span class="row-title wrap-ok">Oral examiner in mathematics</span><span class="row-sub">French preparatory classes (ECG), IPESUP, Paris</span></span></div></li>
+        <li class="row"><div><span class="row-lead year">2021–2023</span><span class="row-body"><span class="row-title wrap-ok">Oral examiner in mathematics</span><span class="row-sub">French preparatory classes (PCSI), Lycée Assomption, Rennes</span></span></div></li>
       </ul>
     </section>
 

@@ -14,7 +14,7 @@
     "year": "2024",
     "place": "ENS (DMA)",
     "cover": "cutoff.webp",
-    "tint": "#4a3a9e",
+    "tint": "#2a4a9e",
     "pdf": "pdf/cutoff-2024.pdf",
     "keywords": [
       "Cutoff",
@@ -66,7 +66,7 @@
     "year": "2021",
     "place": "Polytechnique",
     "cover": "nbody.webp",
-    "tint": "#24408a",
+    "tint": "#0b5a7a",
     "pdf": "pdf/n-body-2021.pdf",
     "keywords": [
       "N-body problem",

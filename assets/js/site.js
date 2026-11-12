@@ -43,6 +43,27 @@
   }
   $$("[data-action=share]").forEach((b) => b.addEventListener("click", share));
 
+  /* ---------- Light / dark theme (choice remembered on this device) */
+  const root = document.documentElement;
+  const fr = (root.lang || "").startsWith("fr");
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  const lightMeta = metaTheme ? metaTheme.content : null;
+  function applyTheme(t) {
+    if (t === "dark") root.setAttribute("data-theme", "dark"); else root.removeAttribute("data-theme");
+    $$("[data-action=theme]").forEach((b) => {
+      const u = b.querySelector("use"); if (u) u.setAttribute("href", t === "dark" ? "#i-sun" : "#i-moon");
+      b.setAttribute("aria-label", t === "dark" ? (fr ? "Mode clair" : "Light mode") : (fr ? "Mode sombre" : "Dark mode"));
+      b.setAttribute("aria-pressed", String(t === "dark"));
+    });
+    if (metaTheme) metaTheme.content = t === "dark" ? "#31261e" : lightMeta;
+  }
+  applyTheme(root.getAttribute("data-theme") === "dark" ? "dark" : "light");
+  $$("[data-action=theme]").forEach((b) => b.addEventListener("click", () => {
+    const t = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    applyTheme(t);
+    try { localStorage.setItem("theme", t); } catch (e) { /* private mode: the choice just isn't remembered */ }
+  }));
+
   const menu = $(".menu");
   const menuBtn = $("[data-action=menu]");
   if (menu && menuBtn) {
@@ -145,6 +166,20 @@
     const play = $(".mini-btn.play", dock);
     if (play) play.addEventListener("click", () => { const p = papers[k]; if (p) location.href = `paper.html?id=${p.id}`; });
   }
+
+  /* ---------- Papers / Research stays: tap the title to switch between covers and a plain list */
+  $$(".view-toggle").forEach((btn) => {
+    const list = document.getElementById(btn.getAttribute("aria-controls"));
+    const sec = btn.closest("section");
+    const covers = sec && sec.querySelector(".carousel");
+    if (!list || !covers) return;
+    btn.addEventListener("click", () => {
+      const showList = list.hidden;
+      list.hidden = !showList;
+      covers.hidden = showList;
+      btn.setAttribute("aria-expanded", String(showList));
+    });
+  });
 
   /* ---------- "More" buttons for clamped text */
   $$("[data-more]").forEach((btn) => {
