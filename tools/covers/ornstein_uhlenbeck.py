@@ -42,10 +42,11 @@ def figure(dark=False, curves=None, seed=None):
     cols = ["#eeb760", "#e7889d", "#f4bfcb", "#fdeee6"] if dark else ["#b8862e", "#a72144", "#7d133a", "#4b3317"]
     fig = plt.figure(figsize=(12, 7.5), dpi=200); ax = fig.add_axes([0, 0, 1, 1]); ax.set_axis_off()
     fig.patch.set_facecolor(bg); ax.set_facecolor(bg)
-    ax.add_patch(Rectangle((0, .2), .5, .62, color=block, lw=0, zorder=1))   # before the cutoff time
+    Y0, Y1 = .2, .82                            # the site continues the gold block above the picture (site.css)
+    ax.add_patch(Rectangle((0, Y0), .5, Y1 - Y0, color=block, lw=0, zorder=1))   # before the cutoff time
     cm = LinearSegmentedColormap.from_list("r", cols)
     for j, d in enumerate(ds):
-        ax.plot(u / U_MAX, .2 + .62 * d, color=cm(j / (len(ds) - 1)), lw=1.1, alpha=.85, zorder=3)
+        ax.plot(u / U_MAX, Y0 + (Y1 - Y0) * d, color=cm(j / (len(ds) - 1)), lw=1.1, alpha=.85, zorder=3)
     ax.set_xlim(0, 1); ax.set_ylim(0, 1)
     return fig
 

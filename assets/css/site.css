@@ -215,6 +215,15 @@ body[data-page=home] main { padding-bottom: 0; }
   background: linear-gradient(to bottom, transparent 0%, transparent 42%, color-mix(in srgb, var(--bg) 60%, transparent) 72%, color-mix(in srgb, var(--bg) 92%, transparent) 100%);
 }
 .hero-inner { padding: calc(min(118vw, 640px) * .72) var(--g) 0; }
+/* The picture (2400 x 1500, scaled to cover the box) leaves an empty band above its curves: its gold block (left half,
+   top edge at 18% of the picture's height) is continued up to the top of the page. Picture height = max(width / 1.6, box height). */
+.hero { container-type: inline-size; }
+.hero-art::before {
+  content: ""; position: absolute; top: 0; left: 0; width: 50%; background: #f3dcae;
+  height: calc(.18 * max(100vw / 1.6, min(118vw, 640px)) + .5px);
+  height: calc(.18 * max(100cqw / 1.6, min(118cqw, 640px)) + .5px);
+}
+:root[data-theme="dark"] .hero-art::before { background: #53402b; }
 .wordmark {
   margin: 0; font-family: var(--font-serif); font-weight: 700; text-transform: uppercase; white-space: nowrap; color: var(--wordmark);
   font-size: clamp(21px, 6.55vw, 64px); line-height: 1; letter-spacing: .015em;
@@ -435,6 +444,10 @@ a.foot-name:hover, .foot-col p a:hover { color: var(--accent-2); }
   .card { --card-w: 200px; }
   .people .card { --card-w: 150px; }
   .hero-art { height: min(68vh, 620px); background-position: center 30%; }
+  .hero-art::before {   /* picture moved up by 30% of (picture height - box height) */
+    height: calc(.18 * max(100vw / 1.6, min(68vh, 620px)) - .3 * (max(100vw / 1.6, min(68vh, 620px)) - min(68vh, 620px)) + .5px);
+    height: calc(.18 * max(100cqw / 1.6, min(68vh, 620px)) - .3 * (max(100cqw / 1.6, min(68vh, 620px)) - min(68vh, 620px)) + .5px);
+  }
   .hero-inner { padding-top: calc(min(68vh, 620px) * .7); }
   .wordmark { font-size: clamp(40px, 5.6vw, 72px); }
   .latest { max-width: 640px; margin-left: auto; margin-right: auto; }
