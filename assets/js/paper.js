@@ -36,6 +36,15 @@
   const coverAlt = () => { $("#cover").alt = T("Artwork: simulation for {t}", { t: meta.title || id }); };
   coverAlt(); onLang(coverAlt);
   if (meta.code && window.CodeViewer) CodeViewer.attach($(".album-cover"), meta.code);   // hover: "View the simulation code"
+  if (meta.caption) {                    // figure caption under the cover (data.js; French and Creole in i18n.js)
+    const cap = document.createElement("p");
+    cap.className = "cover-cap";
+    cap.dataset.i18n = "cap-" + meta.code;
+    cap.innerHTML = meta.caption;
+    $(".album-cover").after(cap);
+    if (window.I18N) I18N.translate(cap.parentElement);
+  }
+
   setTitle(meta.title || `arXiv:${id}`);
   const status = meta.status || "Preprint";
   const pubYear = meta.year ? String(meta.year) : (meta.date ? meta.date.slice(0, 4) : "");

@@ -46,6 +46,8 @@ Les profils sont tracés contre t / cₙ ; plus n est grand, plus ils se rapproc
 
 Sur la page d'un article, un petit bouton « </> Code » en bas de la pochette (qui devient « View the simulation code » au survol) ouvre le script, avec Copier et Télécharger. C'est exactement le code du script, lu dans `assets/js/sim-code.js`, généré par `python3 tools/covers/build_code_js.py` : à relancer après toute modification d'un script. Le lien entre article et script est le champ `code` de `assets/js/data.js`.
 
+Sous chaque pochette d'article, une légende d'une phrase, comme un titre de figure (quel processus, quelle distance, les paramètres). Le texte est dans `tools/i18n/captions.py`, en anglais, français et créole : après une modification, depuis la racine du site, `python3 tools/i18n/captions.py` (qui l'écrit dans le champ `caption` de `assets/js/data.js` et dans `fr.py` / `kr.py`), puis `python3 tools/i18n/build_i18n.py`.
+
 Les pochettes des mémoires de stage restent des illustrations.
 
 ## Ajouter un article
@@ -71,9 +73,15 @@ Les pages `stays/` ont été générées une fois à partir des sources LaTeX (p
 Pour les régénérer : mettre les `.tex` dans `tools/memoirs/src/` (noms dans `stays.json`) puis `python3 tools/memoirs/build_stays.py .` (il faut pandoc via `pip install pypandoc_binary`, `beautifulsoup4`, et une distribution LaTeX pour les figures).
 Les PDF sont dans `pdf/`, avec des noms sans accents.
 
+## CV
+
+`pdf/CV_Samuel_Chan-ashing.pdf`, lié depuis l'accueil (bouton rond « CV » sous le nom), le bouton « PDF » à côté du titre Vita et le pied de page. Pour le mettre à jour : remplacer ce fichier par le nouveau PDF en gardant exactement le même nom (rien d'autre à changer).
+
 ## Mise en ligne (GitHub Pages)
 
 Dépôt `samuelchan-ashing.github.io`, branche `main`, dossier racine. Pour mettre à jour : **Add file → Upload files**, glisser les fichiers modifiés (ou tout le contenu de ce dossier), puis **Commit changes**. Les fichiers de même nom sont remplacés ; la mise en ligne prend une ou deux minutes.
+
+Avant d'envoyer des fichiers modifiés, lancer `python3 tools/bump_version.py` : il met un numéro de version (`?v=…`) sur les liens vers les CSS et JS de chaque page, pour que les navigateurs ne mélangent pas les nouveaux fichiers avec d'anciennes copies gardées en cache. Après l'envoi, si une page paraît bizarre, la recharger avec Cmd+Maj+R.
 
 - Le dossier `agreg/` (PDF des développements, liés depuis `agregation.html` sous `agreg/développement/…`) n'est pas dans ce dossier : il faut l'ajouter à la racine du dépôt depuis l'ancien serveur.
 - `.nojekyll` (fichier caché) indique à GitHub de publier les fichiers tels quels.

@@ -236,6 +236,9 @@ body[data-page=home] main { padding-bottom: 0; }
 .hero-act .circle-btn { width: 50px; height: 50px; font-size: 21px; background: var(--surface-2); color: var(--label); transition: transform .2s var(--spring), background .2s; }
 .hero-act:active .circle-btn { transform: scale(.92); }
 @media (hover: hover) { .hero-act:hover .circle-btn { background: color-mix(in srgb, var(--shade) 17%, transparent); } .hero-act:hover { color: var(--label); } }
+/* five actions (Email, LinkedIn, arXiv, CV, Share): tighter on phones */
+@media (max-width: 430px) { .hero-actions { gap: 10px; } .hero-act { width: 56px; } }
+@media (max-width: 359px) { .hero-actions { gap: 5px; } .hero-act { width: 52px; } .hero-act .circle-btn { width: 46px; height: 46px; font-size: 20px; } }
 .play-btn {
   width: 68px; height: 68px; border-radius: 50%; background: #fff; color: #1d1610; display: grid; place-items: center; font-size: 30px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, .25); transition: transform .2s var(--spring);
@@ -328,6 +331,15 @@ body[data-page=home] main { padding-bottom: 0; }
 .latest.feature { margin-top: 0; }
 .latest.press { margin-top: 18px; }
 .latest.press .feature-icon { background: linear-gradient(140deg, var(--press-a), var(--press-b)); }
+/* Vita title with the CV button beside it (same look as the PDF button of the papers) */
+.head-row { display: flex; align-items: center; gap: 16px; margin: 0 var(--g) 6px; }
+.wrap .head-row .big-head { margin: 0; }
+.head-cta { height: 38px; padding: 0 18px 0 15px; border-radius: 19px; display: inline-flex; align-items: center; gap: 7px; flex: none;
+  background: var(--primary); color: var(--on-primary); font-size: 15px; font-weight: 600; white-space: nowrap;
+  transition: transform .2s var(--spring), background .2s; }
+.head-cta .icon { font-size: 17px; }
+.head-cta:active { transform: scale(.96); }
+@media (hover: hover) { .head-cta:hover { background: color-mix(in oklab, var(--primary) 82%, var(--bg)); } }
 
 /* Grouped "inset" box (contact, skills) */
 .boxed { margin: 0 var(--g); border-radius: 14px; background: var(--card); overflow: hidden; }

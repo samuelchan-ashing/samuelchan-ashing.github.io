@@ -83,6 +83,9 @@
    "Talk on the cutoff for Dyson–Laguerre processes, Université Lyon 1, June 2025": "Exposé sur le cutoff des processus de Dyson–Laguerre, Université Lyon 1, juin 2025",
    "Experience": "Expérience",
    "President of the Student Council": "Président du Bureau des élèves",
+   "Since 2025": "Depuis 2025",
+   "Expert Committee Member, La Réunion Innovation": "Membre du comité d’experts, La Réunion Innovation",
+   "Advising on innovation strategy for Réunion Island, from digital transformation and inclusive societies to ecological transition and adaptations to global changes": "Conseil sur la stratégie d’innovation de La Réunion, de la transformation numérique et des sociétés inclusives à la transition écologique et à l’adaptation aux changements globaux",
    "Skills": "Compétences",
    "Computing": "Informatique",
    "Languages": "Langues",
@@ -201,7 +204,10 @@
    "Download .py": "Télécharger le .py",
    "Close": "Fermer",
    "Français": "Français",
-   "English": "English"
+   "English": "English",
+   "#cap-dyson-jacobi": "Profils de cutoff simulés pour <i>n</i> = 2 à 32 (β = 2, <i>a</i> = <i>b</i> = 2<i>n</i>) : distance de Kolmogorov à l’équilibre de <i>x</i><sub>1</sub> + ⋯ + <i>x<sub>n</sub></i>, en fonction de <i>t</i>/<i>c<sub>n</sub></i>.",
+   "#cap-dyson-laguerre": "Profils de cutoff simulés pour <i>n</i> = 2 à 256 (β = 2, α = 2<i>n</i>) : distance de Kolmogorov à l’équilibre de <i>x</i><sub>1</sub> + ⋯ + <i>x<sub>n</sub></i>, en fonction de <i>t</i>/<i>c<sub>n</sub></i>.",
+   "#cap-metastable": "Une simulation avec <i>N</i> = 80 particules (σ = √2, <i>J</i> = √(50e)) : la moyenne empirique quitte l’équilibre stable <i>m</i> ≈ 6,64 pour <i>m</i> ≈ 1,38."
   };
   const KR = {
    "Home": "Kisa mi lé",
@@ -283,6 +289,9 @@
    "Talk on the cutoff for Dyson–Laguerre processes, Université Lyon 1, June 2025": "Ekspozé si lo cutoff bann prosésis Dyson–Laguerre, Université Lyon 1, zin 2025",
    "Experience": "Ekspéryans",
    "President of the Student Council": "Prézidan BDE",
+   "Since 2025": "Dopi 2025",
+   "Expert Committee Member, La Réunion Innovation": "Manm komité lekspèr, La Réunion Innovation",
+   "Advising on innovation strategy for Réunion Island, from digital transformation and inclusive societies to ecological transition and adaptations to global changes": "Mi done konsey si la stratézi linovasyon La Rényon, dopi la transformasyon nimérik ek bann sosyété inkluziv ziska la tranzisyon ékolozik ek ladaptasyon fas bann sanzman global",
    "Skills": "Sak mi koné fé",
    "Computing": "Linformatik",
    "Languages": "Lang",
@@ -401,7 +410,10 @@
    "Download .py": "Télésarz lo .py",
    "Close": "Ferm",
    "Français": "Français",
-   "English": "English"
+   "English": "English",
+   "#cap-dyson-jacobi": "Bann profil cutoff simulé pou <i>n</i> = 2 ziska 32 (β = 2, <i>a</i> = <i>b</i> = 2<i>n</i>) : distans Kolmogorov ziska léquilib <i>x</i><sub>1</sub> + ⋯ + <i>x<sub>n</sub></i>, dapré <i>t</i>/<i>c<sub>n</sub></i>.",
+   "#cap-dyson-laguerre": "Bann profil cutoff simulé pou <i>n</i> = 2 ziska 256 (β = 2, α = 2<i>n</i>) : distans Kolmogorov ziska léquilib <i>x</i><sub>1</sub> + ⋯ + <i>x<sub>n</sub></i>, dapré <i>t</i>/<i>c<sub>n</sub></i>.",
+   "#cap-metastable": "In simulasyon ek <i>N</i> = 80 partikil (σ = √2, <i>J</i> = √(50e)) : la moyèn ampirik i kit léquilib stab <i>m</i> ≈ 6,64 pou <i>m</i> ≈ 1,38."
   };
 
   const root = document.documentElement;

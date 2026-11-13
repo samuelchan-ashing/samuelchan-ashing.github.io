@@ -270,3 +270,12 @@ html.sheet-open, html.sheet-open body { overflow: hidden; }
   .code-sheet pre.code { font-size: 12px; padding: 14px 16px calc(24px + var(--safe-b)); }
   .code-head { padding-left: 18px; }
 }
+
+/* ---------- Figure caption under the cover (data.js "caption") */
+.album-side { min-width: 0; }
+.cover-cap { width: min(66vw, 300px); margin: 12px auto 0; font-size: 12.5px; line-height: 1.45; color: var(--label-2); text-align: center; }
+.cover-cap i { font-family: var(--font-math); font-style: italic; }
+.cover-cap sub { font-size: 75%; line-height: 0; }
+@media (min-width: 760px) {
+  .cover-cap { width: 270px; margin: 12px 0 0; text-align: left; }
+}
